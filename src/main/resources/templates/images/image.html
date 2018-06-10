@@ -28,7 +28,7 @@
         <article class="fl w-50-l w-100 pa3 pa5-ns center">
             <ul class="list pl0 center">
                 <li class="flex items-center lh-copy">
-                    <img class="w3 h3 br-100" th:src="'data:image/jpeg;base64,'+${user.ProfilePhoto.ProfileImageData}" />
+                    <img class="w3 h3 br-100" th:src="'data:image/jpeg;base64,'+${user.profilePhoto.profileImageData}"/>
                     <div class="pl3 flex-auto">
                         <span class="b f6 db black" th:text="${user.username}">Name</span>
                         <span th:if="${user.description}" class="f6 db black-70" th:text="${user.description}">Description</span>
@@ -49,7 +49,7 @@
                 <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
                     <div class="mt3">
                         <label class="db fw6 lh-copy f6" for="comment">Write a comment</label>
-                        <textarea class="pa2 input-reset ba w-100" rows="5" name="comment" id="comment"></textarea>
+                        <textarea class="pa2 input-reset ba w-100" rows="5" name="commentText" id="comment"></textarea>
                     </div>
                 </fieldset>
                 <div>
@@ -60,7 +60,7 @@
                 <article class="ba b--black-10 mv4" th:each="comment : ${comments}">
                     <h1 class="f4 bg-light-gray black-80 mv0 pv2 ph3" th:text="${comment.user.username} + ' says'">Title of card</h1>
                     <div class="pa3 bt b--black-10">
-                        <p class="f6 f5-ns lh-copy measure" th:text="${comment.text}">
+                        <p class="f6 f5-ns lh-copy measure" th:text="${comment.commentText}">
                             text
                         </p>
                     </div>

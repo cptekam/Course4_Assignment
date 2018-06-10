@@ -22,6 +22,11 @@ public class ProfilePhoto implements Serializable{
     @Column(columnDefinition="TEXT")
     private String profileImageData; // base64 version of the profile image;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @PrimaryKeyJoinColumn
+    private User user;
+
+
     public ProfilePhoto() {
         this.profileImageData = defaultAvatarBase64;
     }
@@ -40,5 +45,13 @@ public class ProfilePhoto implements Serializable{
 
     public void setprofileImageData(String imageData) {
         this.profileImageData = imageData;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -111,20 +111,21 @@ public class ImageController {
 
     /**
      * This controller shows a specific image
-     * @param title the title of the image that we want to retrieve
+     * @param id the id of the image that we want to retrieve
      * @param model used to pass data to the view for rendering
      *
      * @return view for the image that was requested
      */
-    @RequestMapping("/images/{title}")
-    public String showImage(@PathVariable String title, Model model) {
-        Image image = imageService.getByTitleWithJoin(title);
+    @RequestMapping("/images/{id}")
+    public String showImage(@PathVariable Integer id, Model model) {
+        Image image = imageService.getByTitleWithJoin(id);
         image.setNumView(image.getNumView() + 1);
         imageService.update(image);
 
         model.addAttribute("user", image.getUser());
         model.addAttribute("image", image);
         model.addAttribute("tags", image.getTags());
+        model.addAttribute("comments", image.getComments());
 
         return "images/image";
     }
@@ -149,14 +150,14 @@ public class ImageController {
      * This controller method displays an image edit form, so the user
      * can update the image's description and uploaded file
      *
-     * @param title title of the image that we want to edit
+     * @param id id of the image that we want to edit
      * @param model used to pass data to the view for rendering
      *
      * @return the image edit form view
      */
-    @RequestMapping("/images/{title}/edit")
-    public String editImage(@PathVariable String title, Model model) {
-        Image image = imageService.getByTitleWithJoin(title);
+    @RequestMapping("/images/{id}/edit")
+    public String editImage(@PathVariable Integer id, Model model) {
+        Image image = imageService.getByTitleWithJoin(id);
         String tags = convertTagsToString(image.getTags());
 
         model.addAttribute("image", image);

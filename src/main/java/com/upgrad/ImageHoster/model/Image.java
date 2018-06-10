@@ -3,9 +3,9 @@ package com.upgrad.ImageHoster.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.time.LocalDate;
 
 
 @Entity
@@ -44,6 +44,9 @@ public class Image implements Serializable{
         joinColumns = { @JoinColumn(name = "image_id")},
         inverseJoinColumns = { @JoinColumn(name = "tag_id")})
     private List<Tag> tags = new ArrayList<Tag>();
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "image")
+    private List<Comment> comments = new ArrayList<>();
 
 
     public Image() { }
@@ -108,5 +111,11 @@ public class Image implements Serializable{
 
     public void setTags(List<Tag> tags) { this.tags = tags; }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
 
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 }

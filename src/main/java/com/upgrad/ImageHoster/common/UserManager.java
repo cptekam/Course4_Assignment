@@ -134,5 +134,11 @@ public class UserManager extends SessionManager {
             return null;
         }
     }
+
+    public static void main(String[] args) {
+        UserManager manager = new UserManager();
+        User user = manager.getUserByName("prakash");
+        System.out.println(user.getUsername());
+    }
 }
 
